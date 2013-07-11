@@ -80,10 +80,11 @@ if(require.main == module) {
         console.log(outJson);
     }
     else { // otherwise (there is a URL) fetch HTML from URL provided        
-        console.log('url was provided');
-//        var u = rest.get(program.url); --> this call does not work.
         rest.get(program.url).on('complete', function(result) {
-            console.log(result);
+            fs.writeFileSync('html.html', result); // writes a file with the web page content so we can reuse our functions
+            var checkJson = checkHtmlFile("html.html", program.checks);
+            var outJson = JSON.stringify(checkJson, null, 4);
+            console.log(outJson);
         });
     }
 
