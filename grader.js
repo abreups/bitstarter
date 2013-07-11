@@ -24,8 +24,10 @@ References:
 var fs = require('fs');
 var program = require('commander');
 var cheerio = require('cheerio');
-var HTMLFILE_DEFAULT = "index.html";
-var CHECKSFILE_DEFAULT = "checks.json";
+var HTMLFILE_DEFAULT = "index.html"; // the default HTML file if none provided
+var CHECKSFILE_DEFAULT = "checks.json"; // the default check-file if none provided
+var rest = require('restler'); // used to read a URL
+// var curl = require('node-curl'); // used to read HTML from the URL
 
 var assertFileExists = function(infile) {
     var instr = infile.toString();
@@ -37,11 +39,15 @@ var assertFileExists = function(infile) {
 };
 
 var cheerioHtmlFile = function(htmlfile) {
-    return cheerio.load(fs.readFileSync(htmlfile));
+//    return cheerio.load(fs.readFileSync(htmlfile));
+    var c = cheerio.load(fs.readFileSync(htmlfile));
+    return c;
 };
 
 var loadChecks = function(checksfile) {
-    return JSON.parse(fs.readFileSync(checksfile));
+//    return JSON.parse(fs.readFileSync(checksfile));
+    var j = JSON.parse(fs.readFileSync(checksfile));
+    return j;
 };
 
 var checkHtmlFile = function(htmlfile, checksfile) {
@@ -65,10 +71,23 @@ if(require.main == module) {
     program
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
+        .option('-u, --url <url>', 'URL to fetch from') 
         .parse(process.argv);
-    var checkJson = checkHtmlFile(program.file, program.checks);
-    var outJson = JSON.stringify(checkJson, null, 4);
-    console.log(outJson);
-} else {
+
+    if (!program.url) { // if there is no URL argument, then assume HTML is provided in a file
+        var checkJson = checkHtmlFile(program.file, program.checks);
+        var outJson = JSON.stringify(checkJson, null, 4);
+        console.log(outJson);
+    }
+    else { // otherwise (there is a URL) fetch HTML from URL provided        
+        console.log('url was provided');
+//        var u = rest.get(program.url); --> this call does not work.
+        rest.get(program.url).on('complete', function(result) {
+            console.log(result);
+        });
+    }
+
+}
+else {
     exports.checkHtmlFile = checkHtmlFile;
 }
