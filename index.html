@@ -5,28 +5,39 @@
     <title>My First Bitstarter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
+
+    <!-- Used for the accordion effect -->
+    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
+    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
+
+    <!-- Special fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheet" type="text/css">
+
     <style type="text/css">
+
       body {
         padding-top: 20px;
         padding-bottom: 40px;
       }
+
       .container {
         width: 960px;
       }
+
       p.lead {
         padding-top: 15px;
       }
-
 
       .navigation, .pitch, .section1, .section2, .faq, .footer {
         padding: 10px 0px 10px 0px; /* top right bottom left */
       }
 
-
       .video, .thermometer, .order, .social {
         border: 1px dotted;
         text-align: center;
       }
+
       .video {
         /* Internal borders have 1px width, thus need to add 4 x 1px to 120px. */
         height: 124px;
@@ -46,24 +57,46 @@
 
     <div class="container">
 
-      <div class="row navigation">
+
+      <!-- The Navigation stuff TEMPORARY -->
+      <div class="row-fluid navigation">
 	<div class="span2 logo">Logo</div>
 	<div class="span6 blank">Blank</div>
 	<div class="span4 about">About</div>
       </div>
+      <!-- End of the Navigation stuff -->
 
-      <div class="row heading">
-	<div class="span12"><h1>Bitstarter Title</h1></div>
-      </div>
 
-      <div class="row subheading">
-	<div class="span12"><p class="lead">This is my first bitstarter project.</p></div>
-      </div>
-
-      <div class="row pitch">
-	  <div class="span6 video">
-              Video
+      <!-- The Heading stuff -->
+      <div class="row-fluid heading">
+	  <div class="span12">
+              <h1>Product</h1>
           </div>
+      </div>
+      <!-- End of the Heading stuff -->
+
+
+      <!-- The Sub heading stuff -->
+      <div class="row-fluid subheading">
+	  <div class="span12">
+              <p class="lead">
+                  One sentence description.
+              </p>
+          </div>
+      </div>
+      <!-- End of the Sub heading stuff -->
+
+
+      <!-- The Marketing Pitch stuff -->
+      <div class="row-fluid pitch">
+
+          <!-- The video -->
+	  <div class="span5 offset1 video">
+              <img class="img-polaroid" src="http://placehold.it/480x300">
+          </div>
+
+          <!-- The thermometer        -->
+          <!-- Bootstrap progress bar -->
           <div class="span6">
               <div class="thermometer progress">
                   <div class="bar bar-success" style="width: 60%;"></div>
@@ -73,17 +106,61 @@
               <div class="social">Social</div>
           </div>
       </div>
+      <!-- End of the Marketing Pitch stuff -->
 
 
-      <div class="row section1">
+      <!-- The section 1 stuff -->
+      <div class="row-fluid section1">
         <div class="span12">Marketing Section1</div>
       </div>
-      <div class="row section2">
+      <!-- End of the Section 1 stuff -->
+
+
+      <!-- The section 2 stuff -->
+      <div class="row-fluid section2">
         <div class="span12">Marketing Section 2</div>
       </div>
-      <div class="row faq">
-        <div class="span12">FAQ</div>
+      <!-- End of the Section 2 stuff -->
+
+
+      <!-- The FAQ stuff -->
+      <div class="row-fluid faq">
+          <div class="span10 offset1">
+              <h3>FAQ</h3>
+              <div class="accordion" id="accordion2">          
+
+                  <!-- Accordion group 1 -->
+                  <div class="accordion-group">
+                      <div class="accordion-heading">
+                          <a class="accordion-toggle" data-toggle="collapse"
+                             data-parent="#accordion2" href="#collapseOne">
+                             What does FAQ stand for?
+                          </a>
+                      </div>
+                      <div id="collapseOne" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                              Frequently Asked Questions.
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- Accordion group 2 -->
+                  <div class="accordion-group">
+                      <div class="accordion-heading">
+                          <a class="accordion-toggle" data-toggle="collapse"
+                             data-parent="#accordion2" href="#collapseTwo">
+                             What's a Frquently Asked Question?
+                          </a>
+                      </div>
+                      <div id="collapseTwo" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                              A question that is commonly asked by users.
+                          </div>
+                      </div>
+                  </div>
+          </div>
       </div>
+      <!-- End of the FAQ stuff -->
 
       <!--The footer stuff  -->
       <div class="row-fluid footer">
@@ -95,6 +172,7 @@
             bottom of the page.</p>
         </div>
       </div>
+      <!--End of the footer stuff  -->
 
 </div>
   </body>
